@@ -6,36 +6,32 @@ class Item {
   }
 
   updateQuality() {
+    this.sellIn -=1
     switch (true) {
-      case (this.quality > 0 && this.sellIn > 0) :
+      case (this.quality > 0 && this.sellIn > -1) :
         this.quality -= 1
-        this.sellIn -=1
         break;
-      case (this.quality > 2 && this.sellIn < 1)  :
+      case (this.quality > 2 && this.sellIn < 0)  :
         this.quality -= 2
-        this.sellIn -=1
         break;
-      case (this.quality < 3 && this.sellIn < 1) :
+      case (this.quality < 3 && this.sellIn < -1) :
         this.quality = 0
-        this.sellIn -=1
         break;
     }
     return this
   }
 
   updateConjuredQuality() {
+    this.sellIn -=1
     switch (true) {
-      case (this.quality > 1 && this.sellIn > 0) :
+      case (this.quality > 1 && this.sellIn > -1) :
         this.quality -= 2
-        this.sellIn -=1
         break;
-      case (this.quality > 3 && this.sellIn < 1)  :
+      case (this.quality > 3 && this.sellIn < 0)  :
         this.quality -= 4
-        this.sellIn -=1
         break;
-      case (this.quality < 4 && this.sellIn < 1) :
+      case (this.quality < 4 && this.sellIn < 0) :
         this.quality = 0
-        this.sellIn -=1
         break;
     }
     return this
@@ -72,32 +68,29 @@ class BackstagePasses extends Item {
     super(name, sellIn, quality)
   }
   updateQuality() {
+    this.sellIn -= 1
     switch (true) {
-      case (this.sellIn > 10) :
+      case (this.sellIn > 9) :
         if (this.quality < 50) {
           this.quality += 1
         }
-        this.sellIn -= 1
         break;
-      case this.sellIn < 11 && this.sellIn > 5 :
+      case this.sellIn < 11 && this.sellIn > 4 :
         if (this.quality < 49) {
           this.quality += 2
         } else {
           this.quality = 50
         }
-        this.sellIn -= 1
         break;
-      case this.sellIn < 6 && this.sellIn > 1 :
+      case this.sellIn < 6 && this.sellIn > 0 :
         if (this.quality < 48) {
           this.quality += 3
         } else {
           this.quality = 50
         }
-        this.sellIn -= 1
         break;
-      case this.sellIn === 1 :
+      case this.sellIn === 0 :
         this.quality = 0
-        this.sellIn -= 1
         break;
     }
     return this
