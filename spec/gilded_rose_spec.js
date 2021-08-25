@@ -8,18 +8,43 @@ describe("GildedRose shop manager", function () {
 
 
   it("Baisser de 1 la qualité et sellIn d'item normaux", function () {
-    // listItems.push(new Item("+5 Dexterity Vest", 10, 20));
-    // listItems.push(new Item("Mana Cake", 3, 6));
-    // listItems.push(new Item("To be rotten tomato", -2, 2));
+    listItems.push(new Item("+5 Dexterity Vest", 10, 20));
+    listItems.push(new Item("Mana Cake", 3, 6));
+    listItems.push(new Item("To be rotten tomato", -2, 2));
     listItems.push(new Item("Disgusting pastry", 7, 1));
 
     const gildedRose = new Shop(listItems);
     const items = gildedRose.updateItems(listItems);
 
     var expected = [
-      // { sellIn: 9, quality: 19 },
-      // { sellIn: 2, quality: 5 },
-      // { sellIn: -3, quality: 0 },
+      { sellIn: 9, quality: 19 },
+      { sellIn: 2, quality: 5 },
+      { sellIn: -3, quality: 0 },
+      { sellIn: 6, quality: 0 }
+    ];
+    expected.forEach(function (testCase, idx) {
+      expect(items[idx].quality).toBe(testCase.quality);
+      expect(items[idx].sellIn).toBe(testCase.sellIn);
+    });
+  });
+
+  it("Baisser de 1 la qualité et sellIn d'item Conjured", function () {
+    listItems.push(new Item("Conjured +5 Dexterity Vest", 13, 20));
+    listItems.push(new Item("Conjured Yummy yummy", 1, 13));
+    listItems.push(new Item("Conjjured Yummy yummy", 1, 13));
+    listItems.push(new Item("Mana Cake Conjured", 0, 11));
+    listItems.push(new Item("Conjred To be rotten tomato", -2, 2));
+    listItems.push(new Item("Disgusting pastrys", 7, 1));
+
+    const gildedRose = new Shop(listItems);
+    const items = gildedRose.updateItems(listItems);
+
+    var expected = [
+      { sellIn: 12, quality: 18 },
+      { sellIn: 0, quality: 11 },
+      { sellIn: 0, quality: 12 },
+      { sellIn: -1, quality: 7 },
+      { sellIn: -3, quality: 0 },
       { sellIn: 6, quality: 0 }
     ];
     expected.forEach(function (testCase, idx) {

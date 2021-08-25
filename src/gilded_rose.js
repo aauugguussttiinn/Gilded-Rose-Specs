@@ -23,23 +23,23 @@ class Item {
     return this
   }
 
-  // updateConjuredQuality() {
-  //   switch (true) {
-  //     case (this.quality > 1 && this.sellIn > 0) :
-  //       this.quality -= 2
-  //       this.sellIn -=1
-  //       break;
-  //     case (this.quality > 3 && this.sellIn < 1)  :
-  //       this.quality -= 4
-  //       this.sellIn -=1
-  //       break;
-  //     case (this.quality < 4 && this.sellIn < 1) :
-  //       this.quality = 0
-  //       this.sellIn -=1
-  //       break;
-  //   }
-  //   return this
-  // }
+  updateConjuredQuality() {
+    switch (true) {
+      case (this.quality > 1 && this.sellIn > 0) :
+        this.quality -= 2
+        this.sellIn -=1
+        break;
+      case (this.quality > 3 && this.sellIn < 1)  :
+        this.quality -= 4
+        this.sellIn -=1
+        break;
+      case (this.quality < 4 && this.sellIn < 1) :
+        this.quality = 0
+        this.sellIn -=1
+        break;
+    }
+    return this
+  }
 
 
 }
@@ -105,6 +105,20 @@ class BackstagePasses extends Item {
 }
 
 
+// class Shop {
+//   constructor(items=[]){
+//     this.items = items;
+//   }
+
+//   updateItems(items) {
+//     items.forEach(item => {
+//       item.updateQuality()
+//     })
+//     return this.items;
+//   }
+
+// }
+
 class Shop {
   constructor(items=[]){
     this.items = items;
@@ -112,12 +126,18 @@ class Shop {
 
   updateItems(items) {
     items.forEach(item => {
-      item.updateQuality()
+      if ( /Conjured/.test(item.name) ) {
+        item.updateConjuredQuality()
+      } else {
+        item.updateQuality()
+      }
     })
     return this.items;
   }
 
 }
+
+
 module.exports = {
   Item,
   AgedBrie,
