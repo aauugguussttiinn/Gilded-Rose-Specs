@@ -126,7 +126,7 @@ class Shop {
 
   updateItems(items) {
     items.forEach(item => {
-      if ( /Conjured/.test(item.name) ) {
+      if ( /^Conjured/.test(item.name) ) {
         item.updateConjuredQuality()
       } else {
         item.updateQuality()

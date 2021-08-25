@@ -43,7 +43,7 @@ describe("GildedRose shop manager", function () {
       { sellIn: 12, quality: 18 },
       { sellIn: 0, quality: 11 },
       { sellIn: 0, quality: 12 },
-      { sellIn: -1, quality: 7 },
+      { sellIn: -1, quality: 9 },
       { sellIn: -3, quality: 0 },
       { sellIn: 6, quality: 0 }
     ];
