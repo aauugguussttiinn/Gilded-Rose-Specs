@@ -1,4 +1,4 @@
-var { Shop, Item } = require('../src/gilded_rose.js');
+var { Shop, Item, AgedBrie, Sulfuras, BackstagePasses } = require('../src/gilded_rose.js');
 describe("GildedRose shop manager", function () {
   var listItems;
 
@@ -12,7 +12,7 @@ describe("GildedRose shop manager", function () {
     listItems.push(new Item("Mana Cake", 3, 6));
 
     const gildedRose = new Shop(listItems);
-    const items = gildedRose.updateQuality();
+    const items = gildedRose.updateItems(listItems);
 
     var expected = [
       { sellIn: 9, quality: 19 },
@@ -24,15 +24,30 @@ describe("GildedRose shop manager", function () {
     });
   });
 
-  it("Augmenter la qualité de 1 pour Aged Brie et Backstage passes", function () {
-    listItems.push(new Item("Aged Brie", 20, 30));
-    listItems.push(new Item("Backstage passes to a TAFKAL80ETC concert", 20, 30));
+  // it("Augmenter la qualité de 1 pour Aged Brie et Backstage passes", function () {
+  //   listItems.push(new AgedBrie("Aged Brie", 20, 30));
+  //   listItems.push(new BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 20, 30));
+
+  //   const gildedRose = new Shop(listItems);
+  //   const items = gildedRose.updateItems(listItems);
+
+  //   var expected = [
+  //     { sellIn: 19, quality: 31 },
+  //     { sellIn: 19, quality: 31 },
+  //   ];
+  //   expected.forEach(function (testCase, idx) {
+  //     expect(items[idx].quality).toBe(testCase.quality);
+  //     expect(items[idx].sellIn).toBe(testCase.sellIn);
+  //   });
+  // });
+
+  it("Augmenter la qualité de 1 pour Aged Brie", function () {
+    listItems.push(new AgedBrie("Aged Brie", 20, 30));
 
     const gildedRose = new Shop(listItems);
-    const items = gildedRose.updateQuality();
+    const items = gildedRose.updateItems(listItems);
 
     var expected = [
-      { sellIn: 19, quality: 31 },
       { sellIn: 19, quality: 31 },
     ];
     expected.forEach(function (testCase, idx) {
@@ -40,4 +55,26 @@ describe("GildedRose shop manager", function () {
       expect(items[idx].sellIn).toBe(testCase.sellIn);
     });
   });
+
+  it("Augmenter la qualité pour Backstage passes", function () {
+    listItems.push(new BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 20, 30));
+    listItems.push(new BackstagePasses("Backstage accelerates", 8, 16));
+    listItems.push(new BackstagePasses("Backstage is fast", 3, 4));
+    listItems.push(new BackstagePasses("Backstage is null", 0, 45));
+
+    const gildedRose = new Shop(listItems);
+    const items = gildedRose.updateItems(listItems);
+
+    var expected = [
+      { sellIn: 19, quality: 31 },
+      { sellIn: 7, quality: 18 },
+      { sellIn: 2, quality: 7 },
+      { sellIn: 0, quality: 0 },
+    ];
+    expected.forEach(function (testCase, idx) {
+      expect(items[idx].quality).toBe(testCase.quality);
+      expect(items[idx].sellIn).toBe(testCase.sellIn);
+    });
+  });
+
 });
