@@ -4,23 +4,44 @@ class Item {
     this.sellIn = sellIn;
     this.quality = quality;
   }
+
   updateQuality() {
     switch (true) {
       case (this.quality > 0 && this.sellIn > 0) :
         this.quality -= 1
         this.sellIn -=1
         break;
-      case (this.quality > 0 && this.sellIn < 1)  :
+      case (this.quality > 2 && this.sellIn < 1)  :
         this.quality -= 2
         this.sellIn -=1
         break;
-      case this.quality < 3 :
+      case (this.quality < 3 && this.sellIn < 1) :
         this.quality = 0
         this.sellIn -=1
         break;
     }
     return this
   }
+
+  // updateConjuredQuality() {
+  //   switch (true) {
+  //     case (this.quality > 1 && this.sellIn > 0) :
+  //       this.quality -= 2
+  //       this.sellIn -=1
+  //       break;
+  //     case (this.quality > 3 && this.sellIn < 1)  :
+  //       this.quality -= 4
+  //       this.sellIn -=1
+  //       break;
+  //     case (this.quality < 4 && this.sellIn < 1) :
+  //       this.quality = 0
+  //       this.sellIn -=1
+  //       break;
+  //   }
+  //   return this
+  // }
+
+
 }
 
 class AgedBrie extends Item {
