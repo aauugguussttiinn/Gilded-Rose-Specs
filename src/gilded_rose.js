@@ -104,21 +104,6 @@ class BackstagePasses extends Item {
   }
 }
 
-
-// class Shop {
-//   constructor(items=[]){
-//     this.items = items;
-//   }
-
-//   updateItems(items) {
-//     items.forEach(item => {
-//       item.updateQuality()
-//     })
-//     return this.items;
-//   }
-
-// }
-
 class Shop {
   constructor(items=[]){
     this.items = items;
