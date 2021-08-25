@@ -71,23 +71,13 @@ class BackstagePasses extends Item {
     this.sellIn -= 1
     switch (true) {
       case (this.sellIn > 9) :
-        if (this.quality < 50) {
-          this.quality += 1
-        }
+        this.quality < 50 ? this.quality += 1 : this.quality
         break;
       case this.sellIn < 11 && this.sellIn > 4 :
-        if (this.quality < 49) {
-          this.quality += 2
-        } else {
-          this.quality = 50
-        }
+        this.quality < 49 ? this.quality += 2 : this.quality = 50
         break;
       case this.sellIn < 6 && this.sellIn > 0 :
-        if (this.quality < 48) {
-          this.quality += 3
-        } else {
-          this.quality = 50
-        }
+        this.quality < 48 ? this.quality += 3 : this.quality = 50
         break;
       case this.sellIn === 0 :
         this.quality = 0
@@ -104,11 +94,7 @@ class Shop {
 
   updateItems(items) {
     items.forEach(item => {
-      if ( /^Conjured/.test(item.name) ) {
-        item.updateConjuredQuality()
-      } else {
-        item.updateQuality()
-      }
+      /^Conjured/.test(item.name) ? item.updateConjuredQuality() : item.updateQuality()
     })
     return this.items;
   }
