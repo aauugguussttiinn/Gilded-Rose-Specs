@@ -49,27 +49,6 @@ describe("GildedRose shop manager", function () {
     });
   });
 
-  // it("Augmenter la qualité pour Backstage passes minus than 50 quality", function () {
-  //   listItems.push(new BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 20, 30));
-  //   listItems.push(new BackstagePasses("Backstage accelerates", 8, 16));
-  //   listItems.push(new BackstagePasses("Backstage is fast", 3, 4));
-  //   listItems.push(new BackstagePasses("Backstage is null", 0, 45));
-
-  //   const gildedRose = new Shop(listItems);
-  //   const items = gildedRose.updateItems(listItems);
-
-  //   var expected = [
-  //     { sellIn: 19, quality: 31 },
-  //     { sellIn: 7, quality: 18 },
-  //     { sellIn: 2, quality: 7 },
-  //     { sellIn: 0, quality: 0 },
-  //   ];
-  //   expected.forEach(function (testCase, idx) {
-  //     expect(items[idx].quality).toBe(testCase.quality);
-  //     expect(items[idx].sellIn).toBe(testCase.sellIn);
-  //   });
-  // });
-
   it("Augmenter la qualité pour Backstage quand la date de péremption est à +10j", function () {
     listItems.push(new BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 20, 50));
     listItems.push(new BackstagePasses("Backstage accelerates", 11, 48));
@@ -145,6 +124,20 @@ describe("GildedRose shop manager", function () {
     expected.forEach(function (testCase, idx) {
       expect(items[idx].quality).toBe(testCase.quality);
       expect(items[idx].sellIn).toBe(testCase.sellIn);
+    });
+  });
+
+  it("Vérifier la qualité de Sulfura", function () {
+    listItems.push(new Sulfuras("My suflura"));
+
+    const gildedRose = new Shop(listItems);
+    const items = gildedRose.updateItems(listItems);
+
+    var expected = [
+      { quality: 80 },
+    ];
+    expected.forEach(function (testCase, idx) {
+      expect(items[idx].quality).toBe(testCase.quality);
     });
   });
 
