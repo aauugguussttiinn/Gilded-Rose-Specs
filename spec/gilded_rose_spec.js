@@ -24,23 +24,6 @@ describe("GildedRose shop manager", function () {
     });
   });
 
-  // it("Augmenter la qualité de 1 pour Aged Brie et Backstage passes", function () {
-  //   listItems.push(new AgedBrie("Aged Brie", 20, 30));
-  //   listItems.push(new BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 20, 30));
-
-  //   const gildedRose = new Shop(listItems);
-  //   const items = gildedRose.updateItems(listItems);
-
-  //   var expected = [
-  //     { sellIn: 19, quality: 31 },
-  //     { sellIn: 19, quality: 31 },
-  //   ];
-  //   expected.forEach(function (testCase, idx) {
-  //     expect(items[idx].quality).toBe(testCase.quality);
-  //     expect(items[idx].sellIn).toBe(testCase.sellIn);
-  //   });
-  // });
-
   it("Augmenter la qualité de 1 pour Aged Brie", function () {
     listItems.push(new AgedBrie("Aged Brie", 20, 30));
 
